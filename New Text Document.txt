@@ -1,0 +1,32 @@
+    $(document).ready(function() {
+        var imageURLs = new Array();
+        var intervalId;
+        var btnStart = $('#btnStartSlideShow');
+        var btnStop = $('#btnStopSlideShow');
+        var thumbnail = $('.thumbnail img');
+        var mainImageElement = $('#mainPic');
+
+        $('.thumbnail img').each(function() {
+            imageURLs.push($(this).attr('src'));
+        });
+
+        console.log(imageURLs);
+
+        function setImage() {
+
+            var currentImageURL = mainImageElement.attr('src');
+            var currentImageIndex = $.inArray(currentImageURL, imageURLs);
+            if (currentImageIndex == (imageURLs.length - 1)) {
+                currentImageIndex = -1;
+            }
+
+            mainImageElement.attr('src', imageURLs[currentImageIndex + 1])
+        }
+
+        thumbnail.on('click', function() {
+            var imgSrc = $(this).attr('src');
+            mainImageElement.attr('src', imgSrc);
+
+        });
+
+    });
